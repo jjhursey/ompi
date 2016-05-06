@@ -1042,7 +1042,7 @@ sub in_tarball {
 # JJH
 #print "This patch should not break the build\n";
 print "This patch should break the build\n";
-exit -10;
+exit -11;
 
 ##############################################################################
 ##############################################################################
