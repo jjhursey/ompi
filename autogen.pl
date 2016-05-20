@@ -1052,8 +1052,8 @@ sub in_tarball {
 ##############################################################################
 # JJH Break this build
 sleep(1);
-print "Broken... Still. Last try\n";
-exit -3;
+print "Broken... Still. Last try. Really\n";
+exit -4;
 
 # Command line parameters
 
