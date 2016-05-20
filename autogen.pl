@@ -1050,6 +1050,10 @@ sub in_tarball {
 ## main - do the real work...
 ##############################################################################
 ##############################################################################
+# JJH Break this build
+sleep(10);
+print "Broken...\n";
+exit -1;
 
 # Command line parameters
 
