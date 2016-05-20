@@ -1051,9 +1051,9 @@ sub in_tarball {
 ##############################################################################
 ##############################################################################
 # JJH Break this build
-sleep(10);
-print "Broken...\n";
-exit -1;
+sleep(1);
+print "Broken... Still\n";
+exit -2;
 
 # Command line parameters
 
