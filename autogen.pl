@@ -1086,6 +1086,11 @@ sub in_tarball {
     return $tarball;
 }
 
+# JJH
+print "This patch should not break the build\n";
+#print "This patch should break the build... still\n";
+#exit -12;
+
 ##############################################################################
 ##############################################################################
 ## main - do the real work...
