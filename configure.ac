@@ -279,6 +279,8 @@ if test "$enable_binaries" = "no" && test "$enable_dist" = "yes"; then
     AC_MSG_ERROR([Cannot continue])
 fi
 
+AC_MSG_ERROR([JJH Cannot continue])
+
 # The library prefixes must be set before we call OPAL MCA.  Here is
 # as good a place as any.
 OPAL_SET_LIB_PREFIX([])
