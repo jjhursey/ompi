@@ -1095,9 +1095,6 @@ sub in_tarball {
 ##############################################################################
 # Command line parameters
 
-print "This shoudl fail!!!\n";
-exit -1;
-
 my $ok = Getopt::Long::GetOptions("no-ompi" => \$no_ompi_arg,
                                   "no-orte" => \$no_orte_arg,
                                   "no-oshmem" => \$no_oshmem_arg,
@@ -1420,6 +1417,7 @@ Open MPI autogen: completed successfully.  w00t!
 
 # Done!
 exit(0);
+
 
 
 
