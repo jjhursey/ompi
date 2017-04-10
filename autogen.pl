@@ -1093,7 +1093,8 @@ sub in_tarball {
 ## main - do the real work...
 ##############################################################################
 ##############################################################################
-
+print "Testing... This should fail\n";
+exit -1;
 # Command line parameters
 
 my $ok = Getopt::Long::GetOptions("no-ompi" => \$no_ompi_arg,
@@ -1418,6 +1419,7 @@ Open MPI autogen: completed successfully.  w00t!
 
 # Done!
 exit(0);
+
 
 
 
