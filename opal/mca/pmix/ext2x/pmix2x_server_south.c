@@ -38,6 +38,7 @@
 #include "opal/util/output.h"
 #include "opal/util/proc.h"
 #include "opal/util/show_help.h"
+#include "opal/util/opal_environ.h"
 #include "opal/mca/pmix/base/base.h"
 #include "pmix2x.h"
 
@@ -109,6 +110,10 @@ int ext2x_server_init(opal_pmix_server_module_t *module,
         }
     }
     ++opal_pmix_base.initialized;
+
+    if( NULL != opal_pmix_base.ext_override_pmix_install_prefix ) {
+        opal_setenv("PMIX_INSTALL_PREFIX", opal_pmix_base.ext_override_pmix_install_prefix, true, &environ);
+    }
 
     /* convert the list to an array of pmix_info_t */
     if (NULL != info && 0 < (sz = opal_list_get_size(info))) {

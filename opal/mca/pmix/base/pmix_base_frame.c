@@ -17,6 +17,7 @@
 #include "opal/util/argv.h"
 #include "opal/util/output.h"
 #include "opal/mca/base/base.h"
+#include "opal/mca/installdirs/installdirs.h"
 
 #include "opal/mca/pmix/pmix.h"
 #include "opal/mca/pmix/base/base.h"
@@ -63,6 +64,24 @@ static int opal_pmix_base_frame_register(mca_base_register_flag_t flags)
                                  "Time (in seconds) to wait for a data exchange to complete",
                                  MCA_BASE_VAR_TYPE_INT, NULL, 0, 0, OPAL_INFO_LVL_3,
                                  MCA_BASE_VAR_SCOPE_READONLY, &opal_pmix_base.timeout);
+
+    opal_pmix_base.ext_override_pmix_install_prefix = NULL;
+    (void) mca_base_var_register("opal", "pmix", "base", "ext_set_pmix_install_prefix",
+                                 "(External Components Only) "
+                                 "Set PMIX_INSTALL_PREFIX to the specified value. "
+                                 "Overwrite existing variable, if set. "
+                                 "Special string \"OPAL_PREFIX\" will set PMIX_INSTALL_PREFIX to the current value of OPAL_PREFIX. "
+                                 "Default: Do nothing.",
+                                 MCA_BASE_VAR_TYPE_STRING,
+                                 NULL, 0, 0, OPAL_INFO_LVL_9,
+                                 MCA_BASE_VAR_SCOPE_READONLY,
+                                 &opal_pmix_base.ext_override_pmix_install_prefix);
+    if( NULL != opal_pmix_base.ext_override_pmix_install_prefix ) {
+        if( 0 == strcmp("OPAL_PREFIX", opal_pmix_base.ext_override_pmix_install_prefix) ) {
+            opal_pmix_base.ext_override_pmix_install_prefix = opal_install_dirs.prefix;
+        }
+    }
+
     return OPAL_SUCCESS;
 }
 
@@ -79,6 +98,9 @@ static int opal_pmix_base_frame_close(void)
 static int opal_pmix_base_frame_open(mca_base_open_flag_t flags)
 {
     int rc;
+
+    /* Register MCA Parameters, just in case we need them during open */
+    opal_pmix_base_frame_register(MCA_BASE_REGISTER_DEFAULT);
 
     /* Open up all available components */
     rc = mca_base_framework_components_open(&opal_pmix_base_framework, flags);

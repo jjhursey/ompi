@@ -30,6 +30,7 @@
 #include "opal/threads/threads.h"
 #include "opal/util/argv.h"
 #include "opal/util/proc.h"
+#include "opal/util/opal_environ.h"
 
 #include "opal/mca/pmix/base/base.h"
 #include "pmix2x.h"
@@ -75,6 +76,10 @@ int ext2x_client_init(opal_list_t *ilist)
             asprintf(&dbgvalue, "PMIX_DEBUG=%d", dbg);
             putenv(dbgvalue);
         }
+    }
+
+    if( NULL != opal_pmix_base.ext_override_pmix_install_prefix ) {
+        opal_setenv("PMIX_INSTALL_PREFIX", opal_pmix_base.ext_override_pmix_install_prefix, true, &environ);
     }
 
     /* convert the incoming list to info structs */

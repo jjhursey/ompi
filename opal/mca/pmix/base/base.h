@@ -73,6 +73,7 @@ typedef struct {
     int timeout;
     int initialized;
     opal_pmix_lock_t lock;
+    char * ext_override_pmix_install_prefix;
 } opal_pmix_base_t;
 
 extern opal_pmix_base_t opal_pmix_base;
