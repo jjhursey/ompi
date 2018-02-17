@@ -16,6 +16,8 @@
 # $HEADER$
 #
 
+# A comment
+
 use strict;
 
 use Cwd;
@@ -1113,8 +1115,10 @@ sub in_tarball {
 ## main - do the real work...
 ##############################################################################
 ##############################################################################
-
 # Command line parameters
+
+#print "This should failed\n";
+#exit -1;
 
 my $ok = Getopt::Long::GetOptions("no-ompi" => \$no_ompi_arg,
                                   "no-orte" => \$no_orte_arg,
@@ -1438,3 +1442,57 @@ Open MPI autogen: completed successfully.  w00t!
 
 # Done!
 exit(0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
